@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2D to 3D Studio — Custom Car Renders</title>
+<meta name="description" content="Transform your car photo into a cinematic 3D render. Custom scenes, custom colors, delivered in 48 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #080808;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.16);
+    --text: #f0f0f0;
+    --muted: #888;
+    --accent: #e8c97a;
+    --accent-dim: rgba(232,201,122,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  nav a.nav-cta {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--black);
+    background: var(--accent);
+    padding: 9px 22px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  nav a.nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(232,201,122,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(232,201,122,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,201,122,0.2);
+    padding: 7px 18px;
+    border-radius: 100px;
+    margin-bottom: 36px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 86px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    max-width: 900px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 52px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--black);
+    background: var(--accent);
+    padding: 15px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    letter-spacing: 0.01em;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border-hover);
+    padding: 15px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+    letter-spacing: 0.01em;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.35); transform: translateY(-1px); }
+
+  .hero-stat-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 72px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat { text-align: center; }
+
+  .hero-stat-number {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .hero-stat-number.growing {
+    color: var(--accent);
+  }
+
+  /* SECTION WRAPPER */
+  section { padding: 100px 24px; }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 480px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* PORTFOLIO */
+  #portfolio { background: var(--surface); }
+
+  .portfolio-header {
+    margin-bottom: 56px;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .portfolio-item {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--surface2);
+    cursor: pointer;
+  }
+
+  .portfolio-item:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16/10;
+  }
+
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    filter: brightness(0.9);
+  }
+
+  .portfolio-item:hover img { transform: scale(1.04); filter: brightness(1); }
+
+  .portfolio-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 20px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+  .portfolio-overlay span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Placeholder cards for portfolio (replace with real images) */
+  .placeholder-car {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    gap: 12px;
+    transition: background 0.3s;
+  }
+
+  .portfolio-item:hover .placeholder-car { background: var(--surface); }
+
+  .placeholder-car svg { opacity: 0.25; }
+
+  .placeholder-car span {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* HOW IT WORKS */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    margin-top: 56px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    position: relative;
+    transition: border-color 0.25s;
+  }
+
+  .step-card:hover { border-color: var(--border-hover); }
+
+  .step-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .step-number::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .step-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,201,122,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .step-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* PRICING */
+  #pricing { background: var(--surface); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 56px;
+  }
+
+  .pricing-card {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    position: relative;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .pricing-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+
+  .pricing-card.featured {
+    border-color: rgba(232,201,122,0.35);
+    background: linear-gradient(160deg, rgba(232,201,122,0.05) 0%, var(--black) 60%);
+  }
+
+  .pricing-card.featured:hover { border-color: rgba(232,201,122,0.6); }
+
+  .featured-badge {
+    position: absolute;
+    top: -1px; right: 28px;
+    background: var(--accent);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .pricing-tier {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .pricing-price {
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .pricing-price span {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .pricing-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .pricing-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 28px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .pricing-features li::before {
+    content: '';
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,201,122,0.25);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3L3 5L7 1' stroke='%23e8c97a' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .pricing-card .btn-primary,
+  .pricing-card .btn-ghost {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* ORDER */
+  #order { background: var(--black); }
+
+  .order-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .order-info h2 { margin-bottom: 20px; }
+
+  .order-info > p {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .payment-box {
+    background: var(--surface);
+    border: 1px solid rgba(232,201,122,0.2);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+
+  .payment-box-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .payment-box p {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .payment-email {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .payment-email span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    font-family: monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .copy-btn {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(232,201,122,0.2);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { opacity: 0.8; }
+
+  .trust-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .trust-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .tally-form-wrap {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    min-height: 600px;
+  }
+
+  .tally-form-wrap iframe {
+    display: block;
+    width: 100%;
+    min-height: 600px;
+    border: none;
+    background: #ffffff;
+  }
+
+  @media (max-width: 860px) {
+    .order-wrapper {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .tally-form-wrap {
+      min-height: 700px;
+    }
+
+    .tally-form-wrap iframe {
+      min-height: 700px;
+    }
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+
+    .portfolio-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 4/3;
+    }
+
+    .steps-grid { grid-template-columns: 1fr; }
+
+    .order-wrapper {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    .hero-stat-row { gap: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item:first-child { grid-column: span 1; }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">2D to 3D <span>Studio</span></a>
+  <a href="#order" class="nav-cta">Order a Render</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Custom Car Renders</div>
+  <h1>Your car.<br>Cinematic <em>3D visuals.</em></h1>
+  <p>Send us a photo of your car. We return a studio-quality 3D render — your scene, your color, your angle. Delivered in 48 hours.</p>
+  <div class="hero-actions">
+    <a href="#order" class="btn-primary">Order Your Render</a>
+    <a href="#portfolio" class="btn-ghost">View the Work</a>
+  </div>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <span class="hero-stat-number">48h</span>
+      <span class="hero-stat-label">Delivery time</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-number">$0</span>
+      <span class="hero-stat-label">Hidden fees</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-number">100%</span>
+      <span class="hero-stat-label">Custom per order</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-header">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">The work speaks.</h2>
+      <p class="section-sub">Every render is built from scratch. No templates. No shortcuts. Just your car, elevated.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <!-- SLOT 1 — LARGE (replace src with your best render) -->
+      <div class="portfolio-item">
+        <div class="placeholder-car">
+          <svg width="64" height="32" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="48" height="12" rx="4" fill="white"/>
+            <path d="M16 14 C20 6 28 4 32 4 C36 4 44 6 48 14" fill="white"/>
+            <circle cx="18" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+            <circle cx="46" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <span>Your hero render here</span>
+        </div>
+        <div class="portfolio-overlay"><span>Studio Dark</span></div>
+      </div>
+
+      <!-- SLOT 2 -->
+      <div class="portfolio-item">
+        <div class="placeholder-car">
+          <svg width="48" height="24" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="48" height="12" rx="4" fill="white"/>
+            <path d="M16 14 C20 6 28 4 32 4 C36 4 44 6 48 14" fill="white"/>
+            <circle cx="18" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+            <circle cx="46" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <span>Studio Dark</span>
+        </div>
+        <div class="portfolio-overlay"><span>Studio Dark</span></div>
+      </div>
+
+      <!-- SLOT 3 -->
+      <div class="portfolio-item">
+        <div class="placeholder-car">
+          <svg width="48" height="24" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="48" height="12" rx="4" fill="white"/>
+            <path d="M16 14 C20 6 28 4 32 4 C36 4 44 6 48 14" fill="white"/>
+            <circle cx="18" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+            <circle cx="46" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <span>Outdoor Scene</span>
+        </div>
+        <div class="portfolio-overlay"><span>Outdoor Scene</span></div>
+      </div>
+
+      <!-- SLOT 4 -->
+      <div class="portfolio-item">
+        <div class="placeholder-car">
+          <svg width="48" height="24" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="48" height="12" rx="4" fill="white"/>
+            <path d="M16 14 C20 6 28 4 32 4 C36 4 44 6 48 14" fill="white"/>
+            <circle cx="18" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+            <circle cx="46" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <span>City Night</span>
+        </div>
+        <div class="portfolio-overlay"><span>City Night</span></div>
+      </div>
+
+      <!-- SLOT 5 -->
+      <div class="portfolio-item">
+        <div class="placeholder-car">
+          <svg width="48" height="24" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="48" height="12" rx="4" fill="white"/>
+            <path d="M16 14 C20 6 28 4 32 4 C36 4 44 6 48 14" fill="white"/>
+            <circle cx="18" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+            <circle cx="46" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <span>Desert Scene</span>
+        </div>
+        <div class="portfolio-overlay"><span>Desert / Open Road</span></div>
+      </div>
+
+      <!-- SLOT 6 -->
+      <div class="portfolio-item">
+        <div class="placeholder-car">
+          <svg width="48" height="24" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="14" width="48" height="12" rx="4" fill="white"/>
+            <path d="M16 14 C20 6 28 4 32 4 C36 4 44 6 48 14" fill="white"/>
+            <circle cx="18" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+            <circle cx="46" cy="26" r="5" fill="#333" stroke="white" stroke-width="1.5"/>
+          </svg>
+          <span>Studio Glow</span>
+        </div>
+        <div class="portfolio-overlay"><span>Studio Glow</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <span class="section-label">Process</span>
+    <h2 class="section-title">Three steps. 48 hours.</h2>
+    <p class="section-sub">No lengthy back-and-forth. No guesswork. Just a clear, fast path from your photo to your render.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="16" height="12" rx="2" stroke="#e8c97a" stroke-width="1.3"/>
+            <circle cx="10" cy="10" r="3" stroke="#e8c97a" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <h3>Submit your car</h3>
+        <p>Fill out the order form below. Share your car model, preferred color, scene type, and a reference photo. Takes two minutes.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M10 4l6 6-6 6" stroke="#e8c97a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Confirm and pay</h3>
+        <p>Send payment directly to our Payoneer account using the email in the order section. Work begins as soon as payment clears. No surprises, no upsells.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 10l3 3 5-5" stroke="#e8c97a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="10" r="7" stroke="#e8c97a" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <h3>Receive your render</h3>
+        <p>Your cinematic 3D render lands in your inbox within 48 hours — high resolution, ready to post, share, or print.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2v4M10 14v4M2 10h4M14 10h4" stroke="#e8c97a" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="10" cy="10" r="3" stroke="#e8c97a" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <h3>One free revision</h3>
+        <p>Not exactly right? Every order includes one revision round. We adjust the lighting, color, or angle until you're satisfied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Clear. Flat. No surprises.</h2>
+    <p class="section-sub">Pick your package. Every order is billed in USD and paid via Payoneer before work begins.</p>
+
+    <div class="pricing-grid">
+      <!-- STANDARD -->
+      <div class="pricing-card">
+        <p class="pricing-tier">Standard</p>
+        <div class="pricing-price">$20<span> USD</span></div>
+        <p class="pricing-note">1 car · 1 scene · 1 angle</p>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>One cinematic render</li>
+          <li>Your choice of scene</li>
+          <li>High-resolution delivery</li>
+          <li>48-hour turnaround</li>
+          <li>One revision included</li>
+        </ul>
+        <a href="#order" class="btn-ghost">Order Standard</a>
+      </div>
+
+      <!-- PREMIUM — FEATURED -->
+      <div class="pricing-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <p class="pricing-tier">Premium</p>
+        <div class="pricing-price">$40<span> USD</span></div>
+        <p class="pricing-note">1 car · 2 scenes · multiple angles</p>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Two distinct scene renders</li>
+          <li>Front + rear angle options</li>
+          <li>Color variation on request</li>
+          <li>High-resolution delivery</li>
+          <li>48-hour turnaround</li>
+          <li>Two revisions included</li>
+        </ul>
+        <a href="#order" class="btn-primary">Order Premium</a>
+      </div>
+
+      <!-- FULL FEATURE -->
+      <div class="pricing-card">
+        <p class="pricing-tier">Full Feature</p>
+        <div class="pricing-price">$85<span> USD</span></div>
+        <p class="pricing-note">Hero package · everything included</p>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li>Three unique scene renders</li>
+          <li>Multiple angles and perspectives</li>
+          <li>Custom background design</li>
+          <li>Color palette exploration</li>
+          <li>High-res + web-optimized files</li>
+          <li>Priority 36-hour delivery</li>
+          <li>Unlimited revisions</li>
+        </ul>
+        <a href="#order" class="btn-ghost">Order Full Feature</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section id="order">
+  <div class="container">
+    <div class="order-wrapper">
+      <div class="order-info">
+        <span class="section-label">Order</span>
+        <h2 class="section-title">Ready to see your car differently?</h2>
+        <p>Fill in the brief below. We'll review it and confirm your order within a few hours. Work starts as soon as payment is received.</p>
+
+        <div class="payment-box">
+          <span class="payment-box-label">How to pay</span>
+          <p>After submitting the form, send your payment directly to our Payoneer account using the email below. Works from any country — no Payoneer account needed on your end.</p>
+          <div class="payment-email">
+            <span id="payoneer-email">abdb54502@gmail.com</span>
+            <button class="copy-btn" onclick="copyEmail()">Copy</button>
+          </div>
+        </div>
+
+        <div class="trust-list">
+          <div class="trust-item">
+            <div class="trust-dot"></div>
+            <span>Payment accepted globally via Payoneer</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-dot"></div>
+            <span>High-resolution files delivered to your email</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-dot"></div>
+            <span>Every render built from scratch — 100% original</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-dot"></div>
+            <span>Revision included in every package</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-dot"></div>
+            <span>No order too unique — DM us if you're unsure</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tally-form-wrap">
+        <script async src="https://tally.so/widgets/embed.js"></script>
+        <iframe data-tally-src="https://tally.so/r/NpBXk0" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="Order Your Custom Car Render" style="min-height:640px;border:none;display:block;background:#ffffff;"></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function copyEmail() {
+    const email = document.getElementById('payoneer-email').innerText;
+    navigator.clipboard.writeText(email).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.innerText = 'Copied';
+      setTimeout(() => btn.innerText = 'Copy', 2000);
+    });
+  }
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>2D to 3D Studio</span> · Custom Car Renders · All prices in USD · Payments via Payoneer</p>
+</footer>
+
+</body>
+</html>
