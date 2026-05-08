@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construction Estimation Guide — Pakistan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════
+   ROOT & THEME
+══════════════════════════════════════════════════ */
+:root {
+  --ink:       #0f1923;
+  --ink-mid:   #2a3d4f;
+  --ink-light: #4a6070;
+  --gold:      #c8922a;
+  --gold-lt:   #e8b84b;
+  --gold-pale: #fdf3e0;
+  --teal:      #1a7a6e;
+  --teal-lt:   #e0f2f0;
+  --red:       #b03a2e;
+  --sky:       #1a5276;
+  --sky-lt:    #d6eaf8;
+  --paper:     #faf8f4;
+  --rule:      #ddd5c8;
+  --white:     #ffffff;
+  --radius:    10px;
+  --shadow:    0 4px 24px rgba(15,25,35,0.10);
+  --shadow-sm: 0 2px 8px rgba(15,25,35,0.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════════
+   HEADER / HERO
+══════════════════════════════════════════════════ */
+.hero {
+  background: var(--ink);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 72px 40px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold-lt);
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: #9ab0c0;
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  background: rgba(200,146,42,0.18);
+  border: 1px solid rgba(200,146,42,0.35);
+  color: var(--gold-lt);
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+/* geometric decoration */
+.hero-geo {
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 500px; height: 500px;
+  opacity: 0.04;
+  z-index: 1;
+}
+
+.hero-line {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 50%, transparent 100%);
+}
+
+/* ══════════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════════ */
+.layout {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  gap: 0;
+}
+
+/* ══════════════════════════════════════════════════
+   SIDEBAR NAV
+══════════════════════════════════════════════════ */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 36px 0 36px 0;
+  border-right: 1px solid var(--rule);
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+
+.nav-part {
+  margin-bottom: 8px;
+}
+
+.nav-part-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 14px 24px 6px;
+  display: block;
+}
+
+.nav-link {
+  display: block;
+  padding: 7px 24px 7px 20px;
+  font-size: 13px;
+  color: var(--ink-light);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.18s;
+  line-height: 1.4;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+  border-left-color: var(--gold);
+  background: rgba(200,146,42,0.06);
+}
+
+.nav-link.active {
+  color: var(--ink);
+  border-left-color: var(--gold);
+  background: var(--gold-pale);
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════
+   MAIN CONTENT
+══════════════════════════════════════════════════ */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 52px 48px 80px 52px;
+}
+
+/* ══════════════════════════════════════════════════
+   PART HEADERS
+══════════════════════════════════════════════════ */
+.part-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 60px 0 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.part-header:first-child { margin-top: 0; }
+
+.part-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.part-title-block .eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.part-title-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION HEADERS
+══════════════════════════════════════════════════ */
+.section {
+  margin-bottom: 52px;
+  scroll-margin-top: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 500;
+  min-width: 28px;
+}
+
+.section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.section-intro {
+  color: var(--ink-light);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  max-width: 700px;
+  border-left: 3px solid var(--gold);
+  padding-left: 14px;
+}
+
+/* ══════════════════════════════════════════════════
+   TABLES
+══════════════════════════════════════════════════ */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 18px;
+  border: 1px solid var(--rule);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  min-width: 540px;
+}
+
+thead tr {
+  background: var(--ink);
+  color: var(--white);
+}
+
+thead th {
+  padding: 12px 14px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+thead th:last-child { border-right: none; }
+
+thead tr::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: var(--gold);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.12s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(200,146,42,0.05); }
+tbody tr:nth-child(even) { background: rgba(250,248,244,0.7); }
+tbody tr:nth-child(even):hover { background: rgba(200,146,42,0.07); }
+
+tbody td {
+  padding: 10px 14px;
+  vertical-align: top;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+tbody td:last-child { border-right: none; }
+
+/* formula / code cells */
+td.formula, .formula-cell {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--sky);
+  background: var(--sky-lt);
+}
+
+td.unit-cell {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--teal);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+td.bold-cell {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+td.note-cell {
+  font-size: 12.5px;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+/* Special highlight rows */
+tr.subtotal td {
+  background: var(--sky-lt) !important;
+  font-weight: 600;
+  color: var(--sky);
+}
+
+tr.total-row td {
+  background: var(--ink) !important;
+  color: var(--gold-lt) !important;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ══════════════════════════════════════════════════
+   CALLOUT / NOTE BOXES
+══════════════════════════════════════════════════ */
+.callout {
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.callout.tip {
+  background: var(--gold-pale);
+  border-left: 4px solid var(--gold);
+  color: #5a4010;
+}
+
+.callout.warning {
+  background: #fdf2f2;
+  border-left: 4px solid var(--red);
+  color: #5a1a1a;
+}
+
+.callout.info {
+  background: var(--teal-lt);
+  border-left: 4px solid var(--teal);
+  color: #0d3d36;
+}
+
+/* ══════════════════════════════════════════════════
+   WORKED EXAMPLE
+══════════════════════════════════════════════════ */
+.example-box {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.example-header {
+  background: var(--sky);
+  color: var(--white);
+  padding: 12px 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════
+   GOLDEN RULE BOX
+══════════════════════════════════════════════════ */
+.golden-rule {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-mid) 100%);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.golden-rule::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 160px;
+  color: rgba(200,146,42,0.15);
+  line-height: 1;
+}
+
+.golden-rule h4 {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+  margin-bottom: 10px;
+}
+
+.golden-rule p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #c8d8e4;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════════════
+   SEARCH BAR
+══════════════════════════════════════════════════ */
+.search-wrap {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 10;
+}
+
+.search-input {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239ab0c0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 10px center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus { border-color: var(--gold); }
+
+/* ══════════════════════════════════════════════════
+   PROGRESS / STATS
+══════════════════════════════════════════════════ */
+.stats-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  flex: 1;
+  min-width: 120px;
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--gold);
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'DM Mono', monospace;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { padding: 32px 20px 60px; }
+  .layout { padding: 0; }
+}
+
+@media (max-width: 600px) {
+  .hero-inner { padding: 48px 20px 40px; }
+  .part-letter { font-size: 36px; }
+  .stats-row { gap: 12px; }
+}
+
+/* ══════════════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+/* ══════════════════════════════════════════════════
+   PRINT
+══════════════════════════════════════════════════ */
+@media print {
+  .sidebar, .search-wrap { display: none; }
+  .main { padding: 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section { animation: fadeUp 0.4s ease both; }
+.section:nth-child(2)  { animation-delay: 0.05s; }
+.section:nth-child(3)  { animation-delay: 0.10s; }
+.section:nth-child(4)  { animation-delay: 0.15s; }
+
+/* small top-border accent on part headers */
+.part-block { scroll-margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<header class="hero">
+  <svg class="hero-geo" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="50" y="50" width="400" height="400" rx="0" stroke="white" stroke-width="1"/>
+    <rect x="100" y="100" width="300" height="300" stroke="white" stroke-width="1"/>
+    <line x1="50" y1="50" x2="450" y2="450" stroke="white" stroke-width="1"/>
+    <line x1="450" y1="50" x2="50" y2="450" stroke="white" stroke-width="1"/>
+    <circle cx="250" cy="250" r="150" stroke="white" stroke-width="1"/>
+    <circle cx="250" cy="250" r="80" stroke="white" stroke-width="1"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Pakistan Edition · 2024–25 · Construction Reference</div>
+    <h1>Construction<br><em>Estimation</em><br>Guide</h1>
+    <p class="hero-sub">A complete reference for quantity takeoff, rate analysis, formulas, units, and pricing — built for the Pakistani construction industry.</p>
+    <div class="badge-row">
+      <span class="badge">Earthwork</span>
+      <span class="badge">RCC & PCC</span>
+      <span class="badge">Masonry</span>
+      <span class="badge">Steel</span>
+      <span class="badge">Finishes</span>
+      <span class="badge">MEP</span>
+      <span class="badge">Rate Analysis</span>
+      <span class="badge">PKR Rates</span>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+</header>
+
+<!-- ═══════════════════════ LAYOUT ═══════════════════════ -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="Search sections…" id="navSearch" oninput="filterNav(this.value)">
+    </div>
+    <div id="navList">
+      <div class="nav-part">
+        <span class="nav-part-label">Part A — Fundamentals</span>
+        <a class="nav-link" href="#s1">1. Pakistani Units</a>
+        <a class="nav-link" href="#s2">2. Key Terminology</a>
+        <a class="nav-link" href="#s3">3. Types of Estimates</a>
+      </div>
+      <div class="nav-part">
+        <span class="nav-part-label">Part B — Quantity Takeoff</span>
+        <a class="nav-link" href="#s4">4. Earthwork</a>
+        <a class="nav-link" href="#s5">5. PCC & Blinding</a>
+        <a class="nav-link" href="#s6">6. RCC Concrete</a>
+        <a class="nav-link" href="#s7">7. Brick Masonry</a>
+        <a class="nav-link" href="#s8">8. Block & Stone</a>
+        <a class="nav-link" href="#s9">9. DPC</a>
+        <a class="nav-link" href="#s10">10. Plaster</a>
+        <a class="nav-link" href="#s11">11. Flooring & Tiling</a>
+        <a class="nav-link" href="#s12">12. Roofing</a>
+        <a class="nav-link" href="#s13">13. Doors & Windows</a>
+        <a class="nav-link" href="#s14">14. Painting</a>
+        <a class="nav-link" href="#s15">15. Waterproofing</a>
+      </div>
+      <div class="nav-part">
+        <span class="nav-part-label">Part C — Structural & MEP</span>
+        <a class="nav-link" href="#s16">16. Steel Rebar</a>
+        <a class="nav-link" href="#s17">17. Structural Steel</a>
+        <a class="nav-link" href="#s18">18. Plumbing</a>
+        <a class="nav-link" href="#s19">19. Electrical</a>
+      </div>
+      <div class="nav-part">
+        <span class="nav-part-label">Part D — Rate Analysis</span>
+        <a class="nav-link" href="#s20">20. Rate Analysis</a>
+        <a class="nav-link" href="#s21">21. Wastage Factors</a>
+        <a class="nav-link" href="#s22">22. Overheads & Profit</a>
+        <a class="nav-link" href="#s23">23. PKR Benchmarks</a>
+      </div>
+      <div class="nav-part">
+        <span class="nav-part-label">Part E — Quick Reference</span>
+        <a class="nav-link" href="#s24">24. Unit Conversions</a>
+        <a class="nav-link" href="#s25">25. Geometry Formulas</a>
+        <a class="nav-link" href="#s26">26. Common Mistakes</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num">26</div><div class="stat-label">Sections</div></div>
+      <div class="stat-card"><div class="stat-num">300+</div><div class="stat-label">Formulas</div></div>
+      <div class="stat-card"><div class="stat-num">15</div><div class="stat-label">Trades Covered</div></div>
+      <div class="stat-card"><div class="stat-num">2025</div><div class="stat-label">PKR Rates</div></div>
+    </div>
+
+    <!-- ════════ PART A ════════ -->
+    <div class="part-block" id="partA">
+      <div class="part-header">
+        <div class="part-letter">A</div>
+        <div class="part-title-block">
+          <div class="eyebrow">Part One</div>
+          <h2>Fundamentals</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h3>Pakistani Units of Measurement</h3>
+      </div>
+      <p class="section-intro">Pakistan construction uses a hybrid of traditional local units and the metric (SI) system. You must be fluent in both — drawings may use metric while clients and labourers speak in local units.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Local Unit</th><th>Metric Equivalent</th><th>Imperial Equivalent</th><th>Used For</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">1 Marla</td><td class="formula">25.29 m²</td><td>272 sq ft</td><td>Land / plot area</td></tr>
+            <tr><td class="bold-cell">1 Kanal</td><td class="formula">505.86 m²</td><td>5,445 sq ft = 20 Marla</td><td>Land area</td></tr>
+            <tr><td class="bold-cell">1 Acre</td><td class="formula">4,047 m²</td><td>43,560 sq ft = 8 Kanal</td><td>Large land</td></tr>
+            <tr><td class="bold-cell">1 Sarsahi</td><td class="formula">6.32 m²</td><td>68 sq ft = ¼ Marla</td><td>Small plots</td></tr>
+            <tr><td class="bold-cell">1 Foot (ft)</td><td class="formula">0.3048 m</td><td>12 inches</td><td>On-site dimensions</td></tr>
+            <tr><td class="bold-cell">1 Inch</td><td class="formula">25.4 mm</td><td>1/12 ft</td><td>Small dimensions</td></tr>
+            <tr><td class="bold-cell">1 Yard</td><td class="formula">0.9144 m</td><td>3 feet</td><td>Sometimes earthwork</td></tr>
+            <tr><td class="bold-cell">1 Cubic foot (cft)</td><td class="formula">0.02832 m³</td><td>—</td><td>Concrete, timber volume</td></tr>
+            <tr><td class="bold-cell">1 Cubic yard</td><td class="formula">0.7646 m³</td><td>27 cft</td><td>Earthwork, concrete</td></tr>
+            <tr><td class="bold-cell">1 Maund (Lahore)</td><td class="formula">37.32 kg</td><td>82.28 lbs</td><td>Steel, aggregate weight</td></tr>
+            <tr><td class="bold-cell">1 Metric Ton</td><td class="formula">1,000 kg</td><td>2,205 lbs</td><td>Steel, cement bulk</td></tr>
+            <tr><td class="bold-cell">1 Bag Cement</td><td class="formula">50 kg</td><td>110 lbs = 1.25 cft</td><td>Cement quantity</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section" id="s2">
+      <div class="section-header"><span class="section-num">02</span><h3>Key Estimation Terminology</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Quantity Takeoff (QTO)</td><td>Measuring quantities of every item from drawings before pricing</td></tr>
+            <tr><td class="bold-cell">Bill of Quantities (BOQ)</td><td>A priced list of all items in a project with quantities, rates & amounts</td></tr>
+            <tr><td class="bold-cell">Schedule of Rates (SOR)</td><td>Government published rate book — Punjab SOR, Sindh SOR, KPK, Balochistan, MES Rates</td></tr>
+            <tr><td class="bold-cell">Unit Rate</td><td>Cost per unit of measurement (e.g., PKR per m², per m³, per kg)</td></tr>
+            <tr><td class="bold-cell">Lump Sum (LS)</td><td>Fixed price for entire scope without itemised quantities</td></tr>
+            <tr><td class="bold-cell">Provisional Sum (PS)</td><td>Budget allowance for work not yet fully defined</td></tr>
+            <tr><td class="bold-cell">Contingency</td><td>Reserve budget for unforeseen costs (typically 5–15%)</td></tr>
+            <tr><td class="bold-cell">Built-Up Area (BUA)</td><td>Total covered area including walls — used for cost benchmarking</td></tr>
+            <tr><td class="bold-cell">Carpet Area</td><td>Net usable internal floor area (excluding walls)</td></tr>
+            <tr><td class="bold-cell">Plinth Area</td><td>Area of building at floor level including external walls</td></tr>
+            <tr><td class="bold-cell">Centre-to-Centre (c/c)</td><td>Measurement from centre of one element to centre of next</td></tr>
+            <tr><td class="bold-cell">R.C.C</td><td>Reinforced Cement Concrete — concrete with steel bars</td></tr>
+            <tr><td class="bold-cell">P.C.C</td><td>Plain Cement Concrete — concrete without steel</td></tr>
+            <tr><td class="bold-cell">D.P.C</td><td>Damp Proof Course — horizontal waterproof barrier at plinth</td></tr>
+            <tr><td class="bold-cell">Formwork / Shuttering</td><td>Temporary mould for concrete casting; area measured in m²</td></tr>
+            <tr><td class="bold-cell">Wastage Factor</td><td>Extra material ordered beyond net quantity for cuts/breakage</td></tr>
+            <tr><td class="bold-cell">Curing</td><td>Keeping concrete moist for strength development — minimum 7–14 days</td></tr>
+            <tr><td class="bold-cell">Dead Load</td><td>Permanent weight of the structure itself</td></tr>
+            <tr><td class="bold-cell">Live Load</td><td>Variable occupancy loads — people, furniture, equipment</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section" id="s3">
+      <div class="section-header"><span class="section-num">03</span><h3>Types of Estimates</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>When Used</th><th>Accuracy</th><th>Basis</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Rough / Conceptual</td><td>Feasibility stage</td><td class="unit-cell">±25–30%</td><td>Cost per m² or Marla of BUA</td></tr>
+            <tr><td class="bold-cell">Preliminary</td><td>Schematic design</td><td class="unit-cell">±15–20%</td><td>Elemental cost model</td></tr>
+            <tr><td class="bold-cell">Detailed / Engineer's</td><td>Tender / construction</td><td class="unit-cell">±5–10%</td><td>Full QTO with unit rates</td></tr>
+            <tr><td class="bold-cell">Contractor's Bid</td><td>Tendering</td><td class="unit-cell">±3–5%</td><td>Detailed QTO + market quotes</td></tr>
+            <tr><td class="bold-cell">Final Account</td><td>After construction</td><td class="unit-cell">Exact</td><td>Measured work as-built</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════ PART B ════════ -->
+    <div class="part-block" id="partB">
+      <div class="part-header">
+        <div class="part-letter">B</div>
+        <div class="part-title-block">
+          <div class="eyebrow">Part Two</div>
+          <h2>Quantity Takeoff — Trade by Trade</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section" id="s4">
+      <div class="section-header"><span class="section-num">04</span><h3>Earthwork & Site Preparation</h3></div>
+      <p class="section-intro">Earthwork is measured by volume (m³ or cft). Key tasks: site clearance, excavation, backfilling, compaction, and disposal of surplus soil.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Site Clearance</td><td class="formula">Length × Width</td><td class="unit-cell">m²</td><td>Include 1m beyond building line</td></tr>
+            <tr><td class="bold-cell">Topsoil Stripping</td><td class="formula">L × W × Depth (150–300mm)</td><td class="unit-cell">m³</td><td>Remove vegetation layer; 150–200mm typical</td></tr>
+            <tr><td class="bold-cell">Foundation Excavation (strip)</td><td class="formula">(L × W × D) per footing</td><td class="unit-cell">m³</td><td>Add 300mm working space each side</td></tr>
+            <tr><td class="bold-cell">Excavation (isolated pad)</td><td class="formula">(L+0.6) × (W+0.6) × D</td><td class="unit-cell">m³</td><td>0.3m each side for working space</td></tr>
+            <tr><td class="bold-cell">Bulk Excavation</td><td class="formula">Net Vol × Bulking Factor</td><td class="unit-cell">m³</td><td>Bulking: 20–30% clay, 10–15% sand</td></tr>
+            <tr><td class="bold-cell">Backfilling</td><td class="formula">Excavation Vol − Foundation Vol</td><td class="unit-cell">m³</td><td>Fill around foundations; not under slab</td></tr>
+            <tr><td class="bold-cell">Compaction Layers</td><td class="formula">Total depth ÷ Layer thickness</td><td class="unit-cell">passes</td><td>Compact in 150–200mm layers</td></tr>
+            <tr><td class="bold-cell">Disposal (surplus soil)</td><td class="formula">Excavation − Backfill − Shrinkage</td><td class="unit-cell">m³</td><td>Shrinkage factor: 0.80–0.90 granular</td></tr>
+            <tr><td class="bold-cell">Anti-termite Treatment</td><td class="formula">L × W (floor area)</td><td class="unit-cell">m²</td><td>Spray chemical before PCC</td></tr>
+            <tr><td class="bold-cell">Sand Filling under slab</td><td class="formula">L × W × Depth</td><td class="unit-cell">m³</td><td>Typically 150–225mm compacted sand</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip"><span class="callout-icon">★</span><span><strong>Pakistan Practice:</strong> Excavation in Lahore/Karachi often in soft clay/sandy soil. Add 10% for unforeseen depth. Disposal via donkey-cart or tractor-trolley — price per trip (20–30 cft per trip).</span></div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section" id="s5">
+      <div class="section-header"><span class="section-num">05</span><h3>Plain Cement Concrete (PCC) & Blinding</h3></div>
+      <p class="section-intro">PCC is used as a levelling/blinding layer below foundations and as floor beds. Common mixes in Pakistan: 1:3:6 (lean), 1:2:4 (nominal).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Pakistan Standard</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">PCC Volume (strip footing)</td><td class="formula">L × W × Thickness</td><td class="unit-cell">m³</td><td>Thickness: 75–100mm (3–4 inches)</td></tr>
+            <tr><td class="bold-cell">PCC Volume (isolated pad)</td><td class="formula">L × W × T × No. of pads</td><td class="unit-cell">m³</td><td>Extend 150mm beyond footing on all sides</td></tr>
+            <tr><td class="bold-cell">PCC Floor Bed</td><td class="formula">Floor Area × Thickness</td><td class="unit-cell">m³</td><td>75–100mm under floor slabs</td></tr>
+            <tr><td class="bold-cell">Cement (1:2:4 mix)</td><td class="formula">0.22 bags per cft of PCC</td><td class="unit-cell">bags/cft</td><td>= 7.77 bags per m³</td></tr>
+            <tr><td class="bold-cell">Sand (1:2:4)</td><td class="formula">0.44 cft per cft of PCC</td><td class="unit-cell">cft/cft</td><td>Coarse, clean sand</td></tr>
+            <tr><td class="bold-cell">Aggregate (1:2:4)</td><td class="formula">0.88 cft per cft of PCC</td><td class="unit-cell">cft/cft</td><td>20mm crushed stone</td></tr>
+            <tr><td class="bold-cell">Dry mix volume</td><td class="formula">Wet Vol × 1.54</td><td class="unit-cell">m³</td><td>1.54 accounts for voids</td></tr>
+            <tr><td class="bold-cell">Water-cement ratio</td><td class="formula">0.40–0.55 by weight</td><td class="unit-cell">ratio</td><td>Lower = stronger; use 0.45 for PCC</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section" id="s6">
+      <div class="section-header"><span class="section-num">06</span><h3>Reinforced Cement Concrete (RCC)</h3></div>
+      <p class="section-intro">RCC is the backbone of Pakistani residential construction. Standard mix M15 (1:2:4) or M20 (1:1.5:3). All volumes in m³; rebar measured separately in kg.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Element</th><th>Volume Formula</th><th>Formwork Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Strip Foundation</td><td class="formula">L × W × D</td><td>— (earth-faced)</td><td>No formwork if cast against soil</td></tr>
+            <tr><td class="bold-cell">Isolated Pad Footing</td><td class="formula">L × W × D per pad</td><td class="formula">2(L+W)×D + L×W</td><td>Include kicker height</td></tr>
+            <tr><td class="bold-cell">Column (rectangular)</td><td class="formula">B × D × H</td><td class="formula">2(B+D) × H</td><td>H = floor to floor − beam depth</td></tr>
+            <tr><td class="bold-cell">Column (circular)</td><td class="formula">π/4 × dia² × H</td><td class="formula">π × dia × H</td><td>dia in metres</td></tr>
+            <tr><td class="bold-cell">Beam</td><td class="formula">B × D × L (net span)</td><td class="formula">(2D+B) × L</td><td>Deduct slab thickness from D if T-beam</td></tr>
+            <tr><td class="bold-cell">Slab (flat)</td><td class="formula">L × W × Thickness</td><td class="formula">L × W (soffit)</td><td>Thickness: 100–150mm typical</td></tr>
+            <tr><td class="bold-cell">Staircase (waist slab)</td><td class="formula">Slope L × W × T</td><td class="formula">Slope L × W</td><td>Slope L = √(H² + Run²)</td></tr>
+            <tr><td class="bold-cell">Staircase (steps)</td><td class="formula">0.5 × Rise × Tread × W × No. steps</td><td>—</td><td>Steps are solid triangles</td></tr>
+            <tr><td class="bold-cell">Lintel</td><td class="formula">B × D × (Opening + 2×bearing)</td><td class="formula">2D × length</td><td>Bearing each side: 150–230mm</td></tr>
+            <tr><td class="bold-cell">Parapet / Chhajja</td><td class="formula">L × W × T</td><td class="formula">L × (top + 2 sides)</td><td>T = 75–100mm for chhajja</td></tr>
+            <tr><td class="bold-cell">Retaining Wall</td><td class="formula">L × avg. thickness × H</td><td class="formula">L × H (exposed face)</td><td>Stepped base calculated separately</td></tr>
+            <tr><td class="bold-cell">Water Tank (walls)</td><td class="formula">Perimeter × T × H</td><td class="formula">Perimeter × H</td><td>Calculate each wall panel</td></tr>
+            <tr><td class="bold-cell">Water Tank (base slab)</td><td class="formula">L × W × T</td><td>—</td><td>Typically 150–200mm thick</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap" style="margin-top:20px">
+        <table>
+          <thead><tr><th>Mix Ratio</th><th>Cement (bags/m³)</th><th>Sand (cft/m³)</th><th>Aggregate (cft/m³)</th><th>Dry Vol Factor</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">1:1.5:3 — M20</td><td class="formula">8.06</td><td class="formula">12.09</td><td class="formula">24.18</td><td class="unit-cell">1.54</td></tr>
+            <tr><td class="bold-cell">1:2:4 — M15</td><td class="formula">6.32</td><td class="formula">12.64</td><td class="formula">25.28</td><td class="unit-cell">1.54</td></tr>
+            <tr><td class="bold-cell">1:3:6 — M10 (PCC)</td><td class="formula">4.44</td><td class="formula">13.32</td><td class="formula">26.64</td><td class="unit-cell">1.54</td></tr>
+            <tr><td class="bold-cell">1:1:2 — M25</td><td class="formula">11.09</td><td class="formula">11.09</td><td class="formula">22.18</td><td class="unit-cell">1.54</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout info"><span class="callout-icon">ℹ</span><span>1 bag cement = 50 kg = 1.25 cft. Dry volume = Wet volume × 1.54 (accounts for voids). Add 2% wastage for cement, 5% for aggregates.</span></div>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section" id="s7">
+      <div class="section-header"><span class="section-num">07</span><h3>Brick Masonry</h3></div>
+      <p class="section-intro">Standard Pakistani brick: 9″ × 4.5″ × 3″ (229×114×76mm). Walls measured in m² with thickness noted, or in cft by volume.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Pakistan Values</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Wall Area (gross)</td><td class="formula">Length × Height</td><td class="unit-cell">m²</td><td>Include openings initially</td></tr>
+            <tr><td class="bold-cell">Deductions</td><td class="formula">Σ (W × H) for each opening</td><td class="unit-cell">m²</td><td>Deduct all doors & windows</td></tr>
+            <tr><td class="bold-cell">Net Wall Area</td><td class="formula">Gross − Deductions</td><td class="unit-cell">m²</td><td>This gets plastered too</td></tr>
+            <tr><td class="bold-cell">Wall Volume (9″ wall)</td><td class="formula">Net Area × 0.229m</td><td class="unit-cell">m³</td><td>Full brick — one-brick wall</td></tr>
+            <tr><td class="bold-cell">Wall Volume (4.5″ wall)</td><td class="formula">Net Area × 0.114m</td><td class="unit-cell">m³</td><td>Half-brick partition wall</td></tr>
+            <tr><td class="bold-cell">Wall Volume (13.5″ wall)</td><td class="formula">Net Area × 0.343m</td><td class="unit-cell">m³</td><td>One-and-half brick wall</td></tr>
+            <tr><td class="bold-cell">No. of bricks per m³</td><td class="formula">500 bricks/m³</td><td class="unit-cell">bricks/m³</td><td>Includes 10mm mortar joints</td></tr>
+            <tr><td class="bold-cell">No. of bricks per cft</td><td class="formula">14.14 bricks/cft</td><td class="unit-cell">bricks/cft</td><td>Pakistani std brick</td></tr>
+            <tr><td class="bold-cell">Bricks per m² (9″ wall)</td><td class="formula">500 × 0.229 ≈ 115</td><td class="unit-cell">bricks/m²</td><td></td></tr>
+            <tr><td class="bold-cell">Mortar volume per m³</td><td class="formula">0.25–0.30 m³ mortar</td><td class="unit-cell">m³</td><td>Fill between bricks + joints</td></tr>
+            <tr><td class="bold-cell">Cement for mortar (1:4)</td><td class="formula">2.0 bags/m³ mortar</td><td class="unit-cell">bags</td><td>≈ 0.50–0.60 bags per m³ brickwork</td></tr>
+            <tr><td class="bold-cell">English Bond</td><td>Alternating header/stretcher courses</td><td>—</td><td>Strongest — used for structural walls</td></tr>
+            <tr><td class="bold-cell">Flemish Bond</td><td>Alternate header+stretcher in each course</td><td>—</td><td>Better appearance</td></tr>
+            <tr><td class="bold-cell">Stretcher Bond</td><td>All stretchers (half-brick only)</td><td>—</td><td>Partitions only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip"><span class="callout-icon">★</span><span>Wastage: Add 5–8% to brick quantity for breakage. In Lahore, machine-made kiln bricks are standard. Standard mortar joint = 10mm (⅜″).</span></div>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section" id="s8">
+      <div class="section-header"><span class="section-num">08</span><h3>Block Masonry & Stone Masonry</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Concrete Block (std)</td><td>400×200×200mm</td><td>—</td><td>8″×8″×16″ — solid or hollow</td></tr>
+            <tr><td class="bold-cell">Blocks per m²</td><td class="formula">12.5 blocks/m²</td><td class="unit-cell">blocks/m²</td><td>Single skin with 10mm joints</td></tr>
+            <tr><td class="bold-cell">Block wall volume</td><td class="formula">Area × 0.2m</td><td class="unit-cell">m³</td><td>Single 8″ block course</td></tr>
+            <tr><td class="bold-cell">Mortar for blocks (1:6)</td><td class="formula">0.03 m³ mortar per m²</td><td class="unit-cell">m³/m²</td><td>Bed joints only</td></tr>
+            <tr><td class="bold-cell">Random Rubble Stone</td><td class="formula">L × H × T</td><td class="unit-cell">m³</td><td>1 m³ ≈ 1.5 ton stone</td></tr>
+            <tr><td class="bold-cell">Mortar in rubble</td><td class="formula">≈ 33% of total volume</td><td>—</td><td>0.67 m³ stone + 0.33 m³ mortar</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section" id="s9">
+      <div class="section-header"><span class="section-num">09</span><h3>Damp Proof Course (DPC)</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Pakistan Standard</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">DPC Area (horizontal)</td><td class="formula">L × W of wall at plinth</td><td class="unit-cell">m²</td><td>Runs along all walls at plinth level</td></tr>
+            <tr><td class="bold-cell">DPC Thickness</td><td>75mm PCC 1:2:4 + bitumen paint</td><td class="unit-cell">mm</td><td>Or 2 coats bitumen on 50mm PCC</td></tr>
+            <tr><td class="bold-cell">Cement-based DPC</td><td class="formula">L × W × 0.075m PCC</td><td class="unit-cell">m³</td><td>Then 2 coats bitumen @ 1.5 kg/m²</td></tr>
+            <tr><td class="bold-cell">Bitumen felt DPC</td><td class="formula">L × W</td><td class="unit-cell">m²</td><td>Hessian-based bituminous felt strip</td></tr>
+            <tr><td class="bold-cell">Chemical DPC (injection)</td><td>Linear metres of wall</td><td class="unit-cell">LM</td><td>Injected into existing walls</td></tr>
+            <tr><td class="bold-cell">Plinth Protection</td><td class="formula">Perimeter × 0.9m width</td><td class="unit-cell">m²</td><td>Lean PCC slope away from building</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section" id="s10">
+      <div class="section-header"><span class="section-num">10</span><h3>Plaster & Rendering</h3></div>
+      <p class="section-intro">Plaster is measured by area (m²). Always deduct openings. Standard thickness: 12–15mm internal, 20mm external.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Internal Wall Plaster</td><td class="formula">Net wall area (after deductions)</td><td class="unit-cell">m²</td><td>12–15mm; mix 1:3 or 1:4</td></tr>
+            <tr><td class="bold-cell">External Wall Plaster</td><td class="formula">Net external wall area</td><td class="unit-cell">m²</td><td>20mm thick; 1:3; add waterproofer</td></tr>
+            <tr><td class="bold-cell">Ceiling Plaster</td><td class="formula">Room L × W (soffit area)</td><td class="unit-cell">m²</td><td>6–10mm on RCC soffit; mix 1:4</td></tr>
+            <tr><td class="bold-cell">Plinth Face Plaster</td><td class="formula">Perimeter × Plinth height</td><td class="unit-cell">m²</td><td>Usually 300–450mm high</td></tr>
+            <tr><td class="bold-cell">Cement (1:4, 12mm thick)</td><td class="formula">0.092 bags/m²</td><td class="unit-cell">bags/m²</td><td>≈ 1 bag per 10.8 m²</td></tr>
+            <tr><td class="bold-cell">Cement (1:3, 20mm thick)</td><td class="formula">0.21 bags/m²</td><td class="unit-cell">bags/m²</td><td>External plaster</td></tr>
+            <tr><td class="bold-cell">Sand (1:4, 12mm)</td><td class="formula">0.018 m³/m²</td><td class="unit-cell">m³/m²</td><td></td></tr>
+            <tr><td class="bold-cell">Two-coat plaster</td><td>1st coat 12mm + 2nd coat 6mm</td><td>—</td><td>Total 18mm; measure same area for both</td></tr>
+            <tr><td class="bold-cell">Chicken wire mesh</td><td>At RCC-masonry junction (300mm strips)</td><td class="unit-cell">m²</td><td>Prevents cracking at junctions</td></tr>
+            <tr><td class="bold-cell">Reveals (window/door sides)</td><td class="formula">Perimeter of opening × reveal width</td><td class="unit-cell">m²</td><td>DO NOT deduct — measure as extra</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout tip"><span class="callout-icon">★</span><span>Deductions in plaster: Deduct openings &gt;0.5 m² each. Do NOT deduct reveals — the plastered sides of window/door openings — measure these separately as extra.</span></div>
+    </div>
+
+    <!-- Section 11 -->
+    <div class="section" id="s11">
+      <div class="section-header"><span class="section-num">11</span><h3>Flooring & Tiling</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Floor tile area</td><td class="formula">Room L × W</td><td class="unit-cell">m²</td><td>Measure between skirting/walls</td></tr>
+            <tr><td class="bold-cell">Wall tile area</td><td class="formula">L × H per wall − openings</td><td class="unit-cell">m²</td><td>Usually kitchen + bathrooms</td></tr>
+            <tr><td class="bold-cell">No. of tiles</td><td class="formula">(Area ÷ Tile Area) × 1.10</td><td class="unit-cell">pieces</td><td>Add 10% wastage for cuts</td></tr>
+            <tr><td class="bold-cell">Tile adhesive</td><td class="formula">3–4 kg/m²</td><td class="unit-cell">kg/m²</td><td>5–6 kg for large format tiles</td></tr>
+            <tr><td class="bold-cell">Tile grout</td><td class="formula">0.5–2.0 kg/m²</td><td class="unit-cell">kg/m²</td><td>Depends on joint width and tile size</td></tr>
+            <tr><td class="bold-cell">Marble flooring</td><td class="formula">L × W</td><td class="unit-cell">m²</td><td>18–20mm thick; 25mm for heavy areas</td></tr>
+            <tr><td class="bold-cell">Granite flooring</td><td class="formula">L × W</td><td class="unit-cell">m²</td><td>30mm external; 18mm internal</td></tr>
+            <tr><td class="bold-cell">IPS (screed) floor</td><td class="formula">L × W × 40mm</td><td class="unit-cell">m³</td><td>Industrial Plain Surface; grind + polish</td></tr>
+            <tr><td class="bold-cell">Tile bed (mortar)</td><td class="formula">L × W × 0.025m</td><td class="unit-cell">m³</td><td>25mm mortar bed below tiles</td></tr>
+            <tr><td class="bold-cell">Skirting (tiles/marble)</td><td class="formula">Perimeter of room − door widths</td><td class="unit-cell">LM</td><td>Height: 100–150mm standard</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 12 -->
+    <div class="section" id="s12">
+      <div class="section-header"><span class="section-num">12</span><h3>Roofing</h3></div>
+      <p class="section-intro">Pakistan has two main roof types: flat RCC slab (most common in cities) and sloped/truss roof. Flat roofs need waterproofing treatment.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Roof waterproofing (bitumen)</td><td class="formula">Roof area + upstands</td><td class="unit-cell">m²</td><td>Upstand: 150–300mm up walls</td></tr>
+            <tr><td class="bold-cell">Brick tile (khaprel) on RCC</td><td class="formula">Roof area</td><td class="unit-cell">m²</td><td>2 layers 25mm mortar + brick tile</td></tr>
+            <tr><td class="bold-cell">Screeding on roof</td><td class="formula">Roof area × 0.040m</td><td class="unit-cell">m³</td><td>Slope to drain: 1:100 minimum</td></tr>
+            <tr><td class="bold-cell">China mosaic / china chips</td><td class="formula">Roof area</td><td class="unit-cell">m²</td><td>White mosaic reduces heat gain</td></tr>
+            <tr><td class="bold-cell">Sloped roof area</td><td class="formula">Horizontal area ÷ cos(pitch angle)</td><td class="unit-cell">m²</td><td>30° pitch: factor = 1.155</td></tr>
+            <tr><td class="bold-cell">CGI / corrugated sheet</td><td class="formula">Slope area</td><td class="unit-cell">m²</td><td>Overlap joints by 150mm minimum</td></tr>
+            <tr><td class="bold-cell">Purlins</td><td class="formula">Roof L ÷ purlin spacing × purlin span</td><td class="unit-cell">LM</td><td>Timber or steel sections</td></tr>
+            <tr><td class="bold-cell">Ridge capping</td><td>Length of ridge</td><td class="unit-cell">LM</td><td>Measured linearly</td></tr>
+            <tr><td class="bold-cell">Gutters</td><td>Perimeter of roof at eaves</td><td class="unit-cell">LM</td><td>Downpipe every 9–12m of gutter</td></tr>
+            <tr><td class="bold-cell">Insulation (foam board)</td><td class="formula">Roof area</td><td class="unit-cell">m²</td><td>50–75mm XPS or EPS board</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 13 -->
+    <div class="section" id="s13">
+      <div class="section-header"><span class="section-num">13</span><h3>Doors & Windows</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>How Measured</th><th>Unit</th><th>Pakistan Standard Sizes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Doors</td><td>Count each door type</td><td class="unit-cell">No.</td><td>3'×7' (0.9×2.1m) main; 2.5'×7' internal</td></tr>
+            <tr><td class="bold-cell">Door area</td><td class="formula">Width × Height per door</td><td class="unit-cell">m²</td><td>For pricing per m²</td></tr>
+            <tr><td class="bold-cell">Door frame timber</td><td class="formula">2(H + W) + sill</td><td class="unit-cell">LM</td><td>3″×4″ or 4″×4″ section</td></tr>
+            <tr><td class="bold-cell">Door shutter (patta)</td><td class="formula">W × H</td><td class="unit-cell">m²</td><td>Flush door; solid wood or hollow core</td></tr>
+            <tr><td class="bold-cell">Windows</td><td>Count each type and size</td><td class="unit-cell">No.</td><td>3'×4' to 5'×5' common in residential</td></tr>
+            <tr><td class="bold-cell">Window area</td><td class="formula">Width × Height per window</td><td class="unit-cell">m²</td><td></td></tr>
+            <tr><td class="bold-cell">Aluminium window</td><td class="formula">W × H of opening</td><td class="unit-cell">m²</td><td>Measured as opening size</td></tr>
+            <tr><td class="bold-cell">Glass (for windows)</td><td class="formula">Light area = W × H − frame</td><td class="unit-cell">m²</td><td>4mm clear; 5mm toughened bathroom</td></tr>
+            <tr><td class="bold-cell">Mosquito net / flyscreen</td><td class="formula">W × H per opening</td><td class="unit-cell">m²</td><td>Aluminium or fibreglass mesh</td></tr>
+            <tr><td class="bold-cell">Hardware (ironmongery)</td><td>Per door: 3 hinges, handle, lock, stopper</td><td class="unit-cell">set</td><td>Brass or stainless steel fittings</td></tr>
+            <tr><td class="bold-cell">Door reveals (plaster)</td><td class="formula">Perimeter of opening × reveal width</td><td class="unit-cell">m²</td><td>Plaster to sides of each opening</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 14 -->
+    <div class="section" id="s14">
+      <div class="section-header"><span class="section-num">14</span><h3>Painting</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Coverage / Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Internal wall paint area</td><td class="formula">Net plaster area (walls + ceiling)</td><td class="unit-cell">m²</td><td>Deduct openings &gt;0.5 m²</td></tr>
+            <tr><td class="bold-cell">External wall paint area</td><td class="formula">Net external plaster area</td><td class="unit-cell">m²</td><td>Plus fascia, parapet faces</td></tr>
+            <tr><td class="bold-cell">Emulsion paint (internal)</td><td class="formula">Area ÷ coverage rate</td><td class="unit-cell">litres</td><td>1 litre ≈ 10–12 m² per coat</td></tr>
+            <tr><td class="bold-cell">Plastic emulsion coats</td><td>1 undercoat + 2 finish coats</td><td>—</td><td>Standard 3-coat system</td></tr>
+            <tr><td class="bold-cell">Weather shield (external)</td><td class="formula">1 litre ≈ 6–8 m² per coat</td><td class="unit-cell">litres</td><td>2 coats; elastic for crack bridging</td></tr>
+            <tr><td class="bold-cell">Primer (wall)</td><td class="formula">1 litre ≈ 8–10 m²</td><td class="unit-cell">litres</td><td>1 coat before paint</td></tr>
+            <tr><td class="bold-cell">Putty / whitewash</td><td class="formula">1 kg ≈ 1.5 m²</td><td class="unit-cell">kg</td><td>Base coat; 1–2 coats required</td></tr>
+            <tr><td class="bold-cell">Enamel paint (woodwork)</td><td class="formula">Area of timber members</td><td class="unit-cell">m²</td><td>1 undercoat + 2 enamel finish coats</td></tr>
+            <tr><td class="bold-cell">Steel / metal paint</td><td class="formula">Area of steel exposed</td><td class="unit-cell">m²</td><td>Red oxide primer + 2 enamel coats</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 15 -->
+    <div class="section" id="s15">
+      <div class="section-header"><span class="section-num">15</span><h3>Waterproofing</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Formula</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Basement waterproofing</td><td class="formula">L×W floor + perimeter×H walls</td><td class="unit-cell">m²</td><td>Tanking; 2 coats crystalline or membrane</td></tr>
+            <tr><td class="bold-cell">Roof waterproofing</td><td class="formula">Roof area + 300mm upstands</td><td class="unit-cell">m²</td><td>Bituminous felt or polyurethane coating</td></tr>
+            <tr><td class="bold-cell">Bathroom waterproofing</td><td class="formula">Floor area + walls to 1800mm H</td><td class="unit-cell">m²</td><td>Cementitious or liquid membrane</td></tr>
+            <tr><td class="bold-cell">Water tank waterproofing</td><td class="formula">All internal faces area</td><td class="unit-cell">m²</td><td>Crystalline admixture + brush coat</td></tr>
+            <tr><td class="bold-cell">Cementitious coating</td><td class="formula">1.5–2 kg/m²</td><td class="unit-cell">kg/m²</td><td>2 coats; flex additive</td></tr>
+            <tr><td class="bold-cell">Bituminous membrane</td><td class="formula">Area</td><td class="unit-cell">m²</td><td>3–4mm thick; torch-on or peel-stick</td></tr>
+            <tr><td class="bold-cell">Integral waterproofing admixture</td><td class="formula">0.5–1% of cement weight</td><td class="unit-cell">kg/bag</td><td>Add to concrete/plaster mix</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════ PART C ════════ -->
+    <div class="part-block" id="partC">
+      <div class="part-header">
+        <div class="part-letter">C</div>
+        <div class="part-title-block">
+          <div class="eyebrow">Part Three</div>
+          <h2>Structural & MEP</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 16 -->
+    <div class="section" id="s16">
+      <div class="section-header"><span class="section-num">16</span><h3>Steel Reinforcement (Rebar)</h3></div>
+      <p class="section-intro">Rebar measured in kg or metric tons. Pakistan uses G-40 (280 MPa) or G-60 (420 MPa). Common diameters: 8, 10, 12, 16, 19, 25mm.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item / Formula</th><th>Calculation</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Unit weight formula</td><td class="formula">(dia in mm)² ÷ 162</td><td class="unit-cell">kg/m</td><td>KEY formula — works for all bar sizes</td></tr>
+            <tr><td>8mm bar</td><td class="formula">64 ÷ 162 = 0.395</td><td class="unit-cell">kg/m</td><td></td></tr>
+            <tr><td>10mm bar</td><td class="formula">100 ÷ 162 = 0.617</td><td class="unit-cell">kg/m</td><td></td></tr>
+            <tr><td>12mm bar</td><td class="formula">144 ÷ 162 = 0.888</td><td class="unit-cell">kg/m</td><td></td></tr>
+            <tr><td>16mm bar</td><td class="formula">256 ÷ 162 = 1.578</td><td class="unit-cell">kg/m</td><td></td></tr>
+            <tr><td>20mm bar</td><td class="formula">400 ÷ 162 = 2.469</td><td class="unit-cell">kg/m</td><td></td></tr>
+            <tr><td>25mm bar</td><td class="formula">625 ÷ 162 = 3.858</td><td class="unit-cell">kg/m</td><td></td></tr>
+            <tr><td class="bold-cell">Total rebar weight</td><td class="formula">Σ (No. bars × Length × Unit wt)</td><td class="unit-cell">kg</td><td>Do for each bar size separately</td></tr>
+            <tr><td class="bold-cell">Hook length (standard)</td><td class="formula">9 × dia</td><td class="unit-cell">mm</td><td>ACI: 12d; BS: 9d — confirm local code</td></tr>
+            <tr><td class="bold-cell">Lap length (tension)</td><td class="formula">40 × dia</td><td class="unit-cell">mm</td><td>Compression: 24d</td></tr>
+            <tr><td class="bold-cell">Cover — footing base</td><td>50–75mm</td><td class="unit-cell">mm</td><td>For footings in soil</td></tr>
+            <tr><td class="bold-cell">Cover — column/beam</td><td>25–40mm</td><td class="unit-cell">mm</td><td>25mm internal; 40mm external exposure</td></tr>
+            <tr><td class="bold-cell">Stirrup length</td><td class="formula">2(B+D) − 8×cover + hooks (2×10d)</td><td class="unit-cell">mm</td><td>For rectangular section</td></tr>
+            <tr><td class="bold-cell">No. of stirrups</td><td class="formula">(L − 2×end cover) ÷ spacing + 1</td><td class="unit-cell">no.</td><td>Spacing as per drawing</td></tr>
+            <tr><td class="bold-cell">Rebar thumb rule (residential)</td><td class="formula">80–120 kg per m³ RCC</td><td class="unit-cell">kg/m³</td><td>Budget estimate only</td></tr>
+            <tr><td class="bold-cell">Binding wire</td><td class="formula">10–12 kg per ton of rebar</td><td class="unit-cell">kg/ton</td><td>Annealed (soft) iron wire</td></tr>
+            <tr><td class="bold-cell">Wastage allowance</td><td>2.5–5% on cut lengths</td><td>—</td><td>Add to calculated weight</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 17 -->
+    <div class="section" id="s17">
+      <div class="section-header"><span class="section-num">17</span><h3>Structural Steel</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Section / Item</th><th>How Measured</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">I-section / H-beam</td><td class="formula">Count × Length × kg/m</td><td class="unit-cell">kg</td><td>Weight from steel section tables</td></tr>
+            <tr><td class="bold-cell">Angle (L-section)</td><td class="formula">Count × Length × kg/m</td><td class="unit-cell">kg</td><td>Equal or unequal leg</td></tr>
+            <tr><td class="bold-cell">Channel (C-section)</td><td class="formula">Count × Length × kg/m</td><td class="unit-cell">kg</td><td>Web + 2 flanges</td></tr>
+            <tr><td class="bold-cell">Hollow section (RHS/SHS)</td><td class="formula">Count × Length × kg/m</td><td class="unit-cell">kg</td><td>Square or rectangular tube</td></tr>
+            <tr><td class="bold-cell">Plate</td><td class="formula">L × W × T × 7,850 kg/m³</td><td class="unit-cell">kg</td><td>Steel density = 7,850 kg/m³</td></tr>
+            <tr><td class="bold-cell">Weld (fillet)</td><td class="formula">Total weld length × throat size</td><td class="unit-cell">LM</td><td>Throat = 0.707 × leg size</td></tr>
+            <tr><td class="bold-cell">Fabrication allowance</td><td>10–15% on material weight</td><td class="unit-cell">kg</td><td>Cutting, drilling, fitting</td></tr>
+            <tr><td class="bold-cell">Primer coat (steel)</td><td class="formula">Surface area = 2(B+D) × L</td><td class="unit-cell">m²</td><td>Red oxide primer; 2 coats</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 18 -->
+    <div class="section" id="s18">
+      <div class="section-header"><span class="section-num">18</span><h3>Plumbing & Sanitary Works</h3></div>
+      <p class="section-intro">Measured by 'point' (fixture outlet) for rough-in and by linear metre for pipework. Pakistan uses both metric (uPVC, CPVC, PPR) and imperial pipe sizing.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>How Measured</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Water supply pipe</td><td>Length of run + fittings allowance</td><td class="unit-cell">LM</td><td>From meter to each point; PPR/CPVC/GI</td></tr>
+            <tr><td class="bold-cell">Cold water point</td><td>Count per fixture</td><td class="unit-cell">point</td><td>WC, basin, shower, kitchen = 1 each</td></tr>
+            <tr><td class="bold-cell">Hot water point</td><td>Count per hot fixture</td><td class="unit-cell">point</td><td>Geyser-fed; CPVC or PPR pipe</td></tr>
+            <tr><td class="bold-cell">Drainage pipe (uPVC)</td><td>Length of runs</td><td class="unit-cell">LM</td><td>110mm soil; 50mm waste; 75mm branch</td></tr>
+            <tr><td class="bold-cell">Soil & waste stack</td><td class="formula">Vertical height × No. of stacks</td><td class="unit-cell">LM</td><td>110mm uPVC; include bends & branches</td></tr>
+            <tr><td class="bold-cell">Inspection chambers</td><td>Count</td><td class="unit-cell">no.</td><td>Per change of direction or every 15m</td></tr>
+            <tr><td class="bold-cell">WC (western/eastern)</td><td>Count</td><td class="unit-cell">no.</td><td>Include cistern, seat, fittings</td></tr>
+            <tr><td class="bold-cell">Basin / sink</td><td>Count</td><td class="unit-cell">no.</td><td>With pedestal or wall-hung; include trap</td></tr>
+            <tr><td class="bold-cell">Water storage tank (rooftop)</td><td>Capacity in litres</td><td class="unit-cell">litres</td><td>250–1000 litre plastic; size per family</td></tr>
+            <tr><td class="bold-cell">Underground water tank</td><td class="formula">L × W × H</td><td class="unit-cell">m³</td><td>RCC or masonry; waterproofed inside</td></tr>
+            <tr><td class="bold-cell">Septic tank</td><td class="formula">1.5 m³/person (min 3 m³)</td><td class="unit-cell">m³</td><td>RCC; sized per number of users</td></tr>
+            <tr><td class="bold-cell">Soak pit</td><td>Dia × Depth (1–2m dia, 2–3m deep)</td><td class="unit-cell">m³</td><td>Stone-filled; after septic tank</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 19 -->
+    <div class="section" id="s19">
+      <div class="section-header"><span class="section-num">19</span><h3>Electrical Works</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>How Measured</th><th>Unit</th><th>Pakistan Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Wiring (conduit system)</td><td>Length of cable run</td><td class="unit-cell">LM</td><td>3/29 or 7/29 wire in uPVC conduit</td></tr>
+            <tr><td class="bold-cell">Single lighting point</td><td>Count per light fitting</td><td class="unit-cell">point</td><td>1 switch + 1 light = 1 point</td></tr>
+            <tr><td class="bold-cell">Power point (socket)</td><td>Count per socket outlet</td><td class="unit-cell">point</td><td>5A (light) or 15A (power) outlet</td></tr>
+            <tr><td class="bold-cell">AC point</td><td>Count per AC unit</td><td class="unit-cell">point</td><td>Dedicated 20A circuit each</td></tr>
+            <tr><td class="bold-cell">Geyser point</td><td>Count per geyser</td><td class="unit-cell">point</td><td>Dedicated 20A circuit</td></tr>
+            <tr><td class="bold-cell">DB (distribution board)</td><td>Count + No. of ways</td><td class="unit-cell">no.</td><td>Main DB + sub-DB per floor</td></tr>
+            <tr><td class="bold-cell">Earthing</td><td>1 electrode per DB + bonding</td><td class="unit-cell">no.</td><td>GI pipe or copper rod; 1m deep minimum</td></tr>
+            <tr><td class="bold-cell">CCTV point</td><td>Count per camera</td><td class="unit-cell">point</td><td>Include cable run length</td></tr>
+            <tr><td class="bold-cell">Internet / data point</td><td>Count per port</td><td class="unit-cell">point</td><td>Cat6 cable; patch panel in comms room</td></tr>
+            <tr><td class="bold-cell">Solar PV system</td><td class="formula">No. of panels × Watts each</td><td class="unit-cell">kWp</td><td>Each panel ≈ 1.7m × 1.0m</td></tr>
+            <tr><td class="bold-cell">Generator (backup)</td><td>kVA rating</td><td class="unit-cell">kVA</td><td>Sized at 80% of total connected load</td></tr>
+            <tr><td class="bold-cell">Load calculation</td><td class="formula">Σ Watts ÷ 1000</td><td class="unit-cell">kW</td><td>Diversity factor: 0.6–0.8 residential</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════ PART D ════════ -->
+    <div class="part-block" id="partD">
+      <div class="part-header">
+        <div class="part-letter">D</div>
+        <div class="part-title-block">
+          <div class="eyebrow">Part Four</div>
+          <h2>Rate Analysis & Pricing</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 20 -->
+    <div class="section" id="s20">
+      <div class="section-header"><span class="section-num">20</span><h3>Rate Analysis Framework</h3></div>
+      <p class="section-intro">Rate analysis = breaking down the cost of 1 unit of any work item into material + labour + equipment + overhead. This is how you build your own unit rates.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Component</th><th>How to Calculate</th><th>Typical %</th><th>Example (1 m³ RCC M15)</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Materials</td><td>Qty of each material × market price</td><td class="unit-cell">50–65%</td><td>Cement + Sand + Aggregate + water</td></tr>
+            <tr><td class="bold-cell">Labour</td><td>No. of workers × daily wage × days per unit</td><td class="unit-cell">20–35%</td><td>Mason, helper, carpenter, bar bender</td></tr>
+            <tr><td class="bold-cell">Equipment</td><td>Hire rate × hours per unit</td><td class="unit-cell">5–15%</td><td>Mixer, vibrator, pump, crane</td></tr>
+            <tr><td class="bold-cell">Small tools</td><td>2–3% of material cost</td><td class="unit-cell">1–3%</td><td>Spades, buckets, wheelbarrows</td></tr>
+            <tr><td class="bold-cell">Contractor overhead</td><td>8–12% of (M+L+E)</td><td class="unit-cell">8–12%</td><td>Office, supervision, insurance</td></tr>
+            <tr><td class="bold-cell">Profit margin</td><td>8–15% of total cost</td><td class="unit-cell">8–15%</td><td>Negotiated; competitive market</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-box">
+        <div class="example-header">Worked Example — Rate Analysis for 1 m³ RCC (M15 Mix, 1:2:4) · Lahore 2024–25</div>
+        <div class="table-wrap" style="box-shadow:none;border:none;border-radius:0;margin:0">
+          <table>
+            <thead><tr><th>Item</th><th>Qty</th><th>Unit</th><th>Rate (PKR)</th><th>Amount (PKR)</th></tr></thead>
+            <tbody>
+              <tr><td>Cement (OPC 50kg bag)</td><td>6.32</td><td class="unit-cell">bags</td><td>1,200</td><td>7,584</td></tr>
+              <tr><td>Coarse sand</td><td>0.44</td><td class="unit-cell">m³</td><td>4,000</td><td>1,760</td></tr>
+              <tr><td>Crushed aggregate (20mm)</td><td>0.88</td><td class="unit-cell">m³</td><td>5,500</td><td>4,840</td></tr>
+              <tr><td>Water</td><td>0.18</td><td class="unit-cell">m³</td><td>50</td><td>9</td></tr>
+              <tr class="subtotal"><td colspan="4"><strong>A. Material Sub-total</strong></td><td><strong>14,193</strong></td></tr>
+              <tr><td>Mason (Raj Mistri)</td><td>0.5</td><td class="unit-cell">day</td><td>2,500</td><td>1,250</td></tr>
+              <tr><td>Helper (Beldar)</td><td>1.0</td><td class="unit-cell">day</td><td>1,500</td><td>1,500</td></tr>
+              <tr class="subtotal"><td colspan="4"><strong>B. Labour Sub-total</strong></td><td><strong>2,750</strong></td></tr>
+              <tr><td>Concrete mixer (hire)</td><td>0.5</td><td class="unit-cell">day</td><td>2,000</td><td>1,000</td></tr>
+              <tr><td>Needle vibrator</td><td>0.5</td><td class="unit-cell">day</td><td>500</td><td>250</td></tr>
+              <tr class="subtotal"><td colspan="4"><strong>C. Equipment Sub-total</strong></td><td><strong>1,250</strong></td></tr>
+              <tr class="subtotal"><td colspan="4"><strong>D. Direct Cost (A+B+C)</strong></td><td><strong>18,193</strong></td></tr>
+              <tr><td colspan="4">Overhead & profit (15%)</td><td>2,729</td></tr>
+              <tr class="total-row"><td colspan="4"><strong>TOTAL UNIT RATE (per m³)</strong></td><td><strong>≈ PKR 20,922</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout tip"><span class="callout-icon">★</span><span>Rates are approximate for Lahore/Rawalpindi 2024–25. Cement prices fluctuate — lock in rates before signing contracts.</span></div>
+    </div>
+
+    <!-- Section 21 -->
+    <div class="section" id="s21">
+      <div class="section-header"><span class="section-num">21</span><h3>Wastage Factors</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Material</th><th>Wastage %</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Cement</td><td class="formula">2–3%</td><td>Bag splits, moisture, mixing loss</td></tr>
+            <tr><td class="bold-cell">Sand / Aggregate</td><td class="formula">5–8%</td><td>Spillage, over-ordering, sieving loss</td></tr>
+            <tr><td class="bold-cell">Bricks</td><td class="formula">5–10%</td><td>Breakage during handling and cutting</td></tr>
+            <tr><td class="bold-cell">Steel rebar</td><td class="formula">2–5%</td><td>Cut-offs, laps, bends</td></tr>
+            <tr><td class="bold-cell">Structural steel</td><td class="formula">5–10%</td><td>Cutting, drilling, scrap</td></tr>
+            <tr><td class="bold-cell">Floor tiles (straight cuts)</td><td class="formula">10%</td><td>Edge and corner cuts</td></tr>
+            <tr><td class="bold-cell">Floor tiles (diagonal lay)</td><td class="formula">15–20%</td><td>More cuts needed</td></tr>
+            <tr><td class="bold-cell">Wall tiles</td><td class="formula">10–15%</td><td>Edge cuts + breakage</td></tr>
+            <tr><td class="bold-cell">Plywood / formwork</td><td class="formula">10–15%</td><td>Reuse factor and cuts</td></tr>
+            <tr><td class="bold-cell">Timber</td><td class="formula">10–15%</td><td>Warping, end splits, sawing</td></tr>
+            <tr><td class="bold-cell">Plaster (cement)</td><td class="formula">3–5%</td><td>Material loss during application</td></tr>
+            <tr><td class="bold-cell">Paint</td><td class="formula">5–10%</td><td>Roller/brush loss, remixing</td></tr>
+            <tr><td class="bold-cell">Waterproofing membrane</td><td class="formula">10%</td><td>Overlaps + edge trimming</td></tr>
+            <tr><td class="bold-cell">Electrical cable</td><td class="formula">10%</td><td>Routing, loops at fittings</td></tr>
+            <tr><td class="bold-cell">uPVC pipe</td><td class="formula">5%</td><td>Cutting allowance</td></tr>
+            <tr><td class="bold-cell">Glass</td><td class="formula">10%</td><td>Breakage during cutting/fitting</td></tr>
+            <tr><td class="bold-cell">Marble / granite</td><td class="formula">10–15%</td><td>Cuts and polishing wastage</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 22 -->
+    <div class="section" id="s22">
+      <div class="section-header"><span class="section-num">22</span><h3>Overheads, Contingency & Profit</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Typical Range</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Site establishment / mobilisation</td><td class="formula">1–3%</td><td>Site hut, fencing, utilities, levelling</td></tr>
+            <tr><td class="bold-cell">Supervision / site management</td><td class="formula">2–4%</td><td>Site engineer, QS, clerk of works</td></tr>
+            <tr><td class="bold-cell">Office overheads</td><td class="formula">2–5%</td><td>Head office cost apportioned to project</td></tr>
+            <tr><td class="bold-cell">Insurance (works + liability)</td><td class="formula">0.5–1.5%</td><td>Contractor's all-risk (CAR) insurance</td></tr>
+            <tr><td class="bold-cell">Performance bond</td><td class="formula">1–3%</td><td>Required on government/large projects</td></tr>
+            <tr><td class="bold-cell">Scaffolding</td><td class="formula">1–2%</td><td>External scaffolding for multi-storey</td></tr>
+            <tr><td class="bold-cell">Contingency (low risk)</td><td class="formula">3–5%</td><td>Drawings complete; low uncertainty</td></tr>
+            <tr><td class="bold-cell">Contingency (high risk)</td><td class="formula">8–15%</td><td>Ground conditions, scope gaps</td></tr>
+            <tr><td class="bold-cell">Inflation / price escalation</td><td class="formula">2–5% per year</td><td>For contracts &gt;12 months duration</td></tr>
+            <tr><td class="bold-cell">Profit margin</td><td class="formula">8–15%</td><td>Competitive; varies by project size/risk</td></tr>
+            <tr class="subtotal"><td class="bold-cell">Total addition to direct cost</td><td class="bold-cell">25–50%</td><td>Smaller jobs = higher percentage</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 23 -->
+    <div class="section" id="s23">
+      <div class="section-header"><span class="section-num">23</span><h3>Pakistan Cost Benchmarks (2024–25)</h3></div>
+      <p class="section-intro">Rough benchmarks for residential construction. Vary by city, finish level, and market conditions. Always verify before use.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Construction Type</th><th>Cost per Marla (PKR)</th><th>Cost per m² (PKR)</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Grey structure only</td><td class="formula">300,000–450,000</td><td>11,900–17,800</td><td>Foundations to roof slab, no finishes</td></tr>
+            <tr><td class="bold-cell">Standard finish (Lahore)</td><td class="formula">600,000–800,000</td><td>23,700–31,600</td><td>Mid-range tiles, simple bathrooms</td></tr>
+            <tr><td class="bold-cell">Good finish</td><td class="formula">800,000–1,200,000</td><td>31,600–47,400</td><td>Imported tiles, proper bathrooms</td></tr>
+            <tr><td class="bold-cell">Luxury finish</td><td class="formula">1,200,000–2,500,000+</td><td>47,400–98,800+</td><td>Marble, smart home, premium fixtures</td></tr>
+            <tr><td class="bold-cell">Apartment (mid-rise)</td><td class="formula">1,000,000–1,500,000</td><td>39,500–59,300</td><td>Karachi/Lahore; includes common areas</td></tr>
+            <tr><td class="bold-cell">Commercial (shell)</td><td class="formula">900,000–1,400,000</td><td>35,600–55,300</td><td>Office shell; no fit-out</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap" style="margin-top:20px">
+        <table>
+          <thead><tr><th>Material</th><th>Approx Rate 2024–25</th><th>Unit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">OPC Cement (Bestway/Lucky/DG)</td><td class="formula">1,100–1,350 PKR</td><td class="unit-cell">per bag (50kg)</td><td>Fluctuates monthly</td></tr>
+            <tr><td class="bold-cell">Sand (Ravi / baloo reti)</td><td class="formula">3,500–5,000 PKR</td><td class="unit-cell">per m³</td><td>Coarse sand for concrete</td></tr>
+            <tr><td class="bold-cell">Crush (20mm aggregate)</td><td class="formula">4,500–6,500 PKR</td><td class="unit-cell">per m³</td><td>Crushed stone from quarry</td></tr>
+            <tr><td class="bold-cell">Rebar (G-60, 12mm)</td><td class="formula">250,000–300,000 PKR</td><td class="unit-cell">per ton</td><td>Pakistan Steel or import</td></tr>
+            <tr><td class="bold-cell">Machine brick (Lahore)</td><td class="formula">18–28 PKR</td><td class="unit-cell">per brick</td><td>Quality varies; buy tested bricks</td></tr>
+            <tr><td class="bold-cell">Marble (local white)</td><td class="formula">250–450 PKR</td><td class="unit-cell">per sq ft</td><td>Polished; 20mm thickness</td></tr>
+            <tr><td class="bold-cell">Floor tile (imported porcelain)</td><td class="formula">80–200 PKR</td><td class="unit-cell">per sq ft</td><td>Varies by brand and origin</td></tr>
+            <tr><td class="bold-cell">uPVC pipe (4″ SWR)</td><td class="formula">700–900 PKR</td><td class="unit-cell">per 6m length</td><td>Drainage pipe</td></tr>
+            <tr><td class="bold-cell">PPR pipe (½″ hot/cold)</td><td class="formula">150–250 PKR</td><td class="unit-cell">per metre</td><td>Water supply</td></tr>
+            <tr><td class="bold-cell">7/29 electrical wire</td><td class="formula">85–120 PKR</td><td class="unit-cell">per metre</td><td>Copper core; 1.5mm²</td></tr>
+            <tr><td class="bold-cell">Labour — Raj Mistri</td><td class="formula">2,000–3,500 PKR</td><td class="unit-cell">per day</td><td>Skilled mason</td></tr>
+            <tr><td class="bold-cell">Labour — Beldar</td><td class="formula">1,200–1,800 PKR</td><td class="unit-cell">per day</td><td>General helper</td></tr>
+            <tr><td class="bold-cell">Labour — Electrician</td><td class="formula">2,000–3,000 PKR</td><td class="unit-cell">per day</td><td>Licensed electrician</td></tr>
+            <tr><td class="bold-cell">Labour — Plumber</td><td class="formula">2,000–3,000 PKR</td><td class="unit-cell">per day</td><td>Skilled plumber</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warning"><span class="callout-icon">⚠</span><span><strong>Disclaimer:</strong> Prices are indicative only. Actual rates change with inflation, supply chain, and location. Always obtain fresh quotations before preparing a tender.</span></div>
+    </div>
+
+    <!-- ════════ PART E ════════ -->
+    <div class="part-block" id="partE">
+      <div class="part-header">
+        <div class="part-letter">E</div>
+        <div class="part-title-block">
+          <div class="eyebrow">Part Five</div>
+          <h2>Quick Reference</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 24 -->
+    <div class="section" id="s24">
+      <div class="section-header"><span class="section-num">24</span><h3>Unit Conversion Table</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>From</th><th>To</th><th>Multiply by</th><th>Reverse (÷)</th></tr></thead>
+          <tbody>
+            <tr><td>Feet (ft)</td><td>Metres (m)</td><td class="formula">0.3048</td><td class="formula">3.2808</td></tr>
+            <tr><td>Inches</td><td>Millimetres (mm)</td><td class="formula">25.4</td><td class="formula">0.0394</td></tr>
+            <tr><td>Yards</td><td>Metres</td><td class="formula">0.9144</td><td class="formula">1.0936</td></tr>
+            <tr><td>Square feet (sft)</td><td>m²</td><td class="formula">0.0929</td><td class="formula">10.764</td></tr>
+            <tr><td>Square yards</td><td>m²</td><td class="formula">0.8361</td><td class="formula">1.196</td></tr>
+            <tr><td class="bold-cell">Marla</td><td>m²</td><td class="formula">25.29</td><td class="formula">0.03954</td></tr>
+            <tr><td class="bold-cell">Kanal</td><td>m²</td><td class="formula">505.86</td><td class="formula">0.001977</td></tr>
+            <tr><td>Cubic feet (cft)</td><td>m³</td><td class="formula">0.02832</td><td class="formula">35.315</td></tr>
+            <tr><td>Cubic yards</td><td>m³</td><td class="formula">0.7646</td><td class="formula">1.308</td></tr>
+            <tr><td>Litres</td><td>m³</td><td class="formula">0.001</td><td class="formula">1,000</td></tr>
+            <tr><td>Gallons (UK)</td><td>Litres</td><td class="formula">4.546</td><td class="formula">0.22</td></tr>
+            <tr><td>Pounds (lb)</td><td>Kilograms (kg)</td><td class="formula">0.4536</td><td class="formula">2.2046</td></tr>
+            <tr><td class="bold-cell">Maund (Lahore)</td><td>Kilograms</td><td class="formula">37.32</td><td class="formula">0.0268</td></tr>
+            <tr><td>PSI</td><td>MPa (N/mm²)</td><td class="formula">0.00689</td><td class="formula">145.04</td></tr>
+            <tr><td>°Fahrenheit</td><td>°Celsius</td><td class="formula">(F − 32) × 5/9</td><td class="formula">C × 9/5 + 32</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 25 -->
+    <div class="section" id="s25">
+      <div class="section-header"><span class="section-num">25</span><h3>Key Geometry Formulas</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Shape</th><th>Area Formula</th><th>Volume Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Rectangle</td><td class="formula">L × W</td><td class="formula">L × W × H</td><td>Perimeter = 2(L+W)</td></tr>
+            <tr><td class="bold-cell">Triangle</td><td class="formula">½ × Base × Height</td><td class="formula">½ × B × H × L</td><td>Sum of 3 sides = perimeter</td></tr>
+            <tr><td class="bold-cell">Trapezoid</td><td class="formula">½(a+b) × H</td><td class="formula">½(a+b) × H × L</td><td>a, b = parallel sides</td></tr>
+            <tr><td class="bold-cell">Circle</td><td class="formula">π × r² = π/4 × D²</td><td class="formula">π × r² × H (cylinder)</td><td>Circumference = 2πr or πD</td></tr>
+            <tr><td class="bold-cell">Sector (partial circle)</td><td class="formula">(θ/360) × π × r²</td><td>—</td><td>Arc length = (θ/360) × 2πr</td></tr>
+            <tr><td class="bold-cell">Ellipse</td><td class="formula">π × a × b</td><td>—</td><td>a, b = semi-axes</td></tr>
+            <tr><td class="bold-cell">Pyramid</td><td class="formula">⅓ × Base Area × H</td><td class="formula">⅓ × L × W × H</td><td>Slope surface = ½ × perimeter × slant H</td></tr>
+            <tr><td class="bold-cell">Frustum (truncated cone)</td><td>—</td><td class="formula">π/3 × H(R²+r²+Rr)</td><td>R = large radius, r = small radius</td></tr>
+            <tr><td class="bold-cell">Stair slope length</td><td class="formula">√(H² + Run²)</td><td>—</td><td>H = rise, Run = horizontal going</td></tr>
+            <tr><td class="bold-cell">Roof slope area</td><td class="formula">Horizontal area ÷ cos(θ)</td><td>—</td><td>θ = pitch angle from horizontal</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 26 -->
+    <div class="section" id="s26">
+      <div class="section-header"><span class="section-num">26</span><h3>Common Mistakes to Avoid</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Mistake</th><th>Why It Happens</th><th>How to Avoid</th></tr></thead>
+          <tbody>
+            <tr><td class="bold-cell">Not reading specs before takeoff</td><td>Rushing into quantities</td><td>Always read specs + drawings together first</td></tr>
+            <tr><td class="bold-cell">Forgetting DPC, waterproofing, anti-termite</td><td>Invisible items not on floor plans</td><td>Use a checklist; review every trade systematically</td></tr>
+            <tr><td class="bold-cell">Not deducting openings from plaster</td><td>Calculating gross wall area only</td><td>Mark each door/window and deduct on takeoff sheet</td></tr>
+            <tr><td class="bold-cell">Not allowing formwork in RCC</td><td>Focussing on concrete only</td><td>Always include formwork as separate BOQ item (25–30% of RCC cost)</td></tr>
+            <tr><td class="bold-cell">Under-estimating rebar</td><td>Guessing instead of counting bars</td><td>Extract each bar size and length from structural drawings</td></tr>
+            <tr><td class="bold-cell">Using outdated rates</td><td>Pakistan inflation is high</td><td>Get fresh quotations every 2–3 months</td></tr>
+            <tr><td class="bold-cell">Missing preliminaries</td><td>Focussing only on trades</td><td>Use a standard preliminaries checklist every time</td></tr>
+            <tr><td class="bold-cell">Wrong unit conversions (ft vs m)</td><td>Mixed drawings and site measurement</td><td>Mark units clearly on takeoff; double-check every dimension</td></tr>
+            <tr><td class="bold-cell">No site visit before estimating</td><td>Thinking drawings tell everything</td><td>Site visit is mandatory for any project &gt;5 Marla</td></tr>
+            <tr><td class="bold-cell">Forgetting profit in a rush</td><td>Pressure to submit quickly</td><td>Lock down overhead + profit % at start of every estimate</td></tr>
+            <tr><td class="bold-cell">No contingency on tight budgets</td><td>Client pushes back; estimator removes it</td><td>Explain contingency is risk cover, not profit</td></tr>
+            <tr><td class="bold-cell">Double-counting items</td><td>Same work appears in two trade sections</td><td>Colour-code drawings and tick off as you measure</td></tr>
+            <tr><td class="bold-cell">Ignoring wastage factors</td><td>Seems like unnecessary extra cost</td><td>Add standard wastage % to every material item — always</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="golden-rule">
+        <h4>Golden Rule of Estimation</h4>
+        <p>Measure twice. Price once. Always verify your quantities against a simple sanity check — cost per m² of BUA. If a number looks wrong, it probably is. Go back and check before submitting. A good estimate is not the fastest one — it's the most accurate one.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── Active nav link on scroll ──────────────────────────────────────
+const sections = document.querySelectorAll('.section, .part-block');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// ── Nav search filter ──────────────────────────────────────────────
+function filterNav(query) {
+  const q = query.toLowerCase();
+  navLinks.forEach(link => {
+    const match = link.textContent.toLowerCase().includes(q);
+    link.style.display = match ? 'block' : 'none';
+  });
+}
+
+// ── Smooth link scroll ─────────────────────────────────────────────
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
